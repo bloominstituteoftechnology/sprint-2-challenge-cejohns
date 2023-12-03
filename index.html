@@ -7,22 +7,100 @@
   <script id="challenge">
     // 👉 CHALLENGE 1
     function profileActivation(profile, reason) {
+       
+      if (profile && profile.active === true && reason === undefined) {
+      return "confirm status manually";
+    }
+    else{
+      if (profile.active) {
+      // Case 1: If the input profile is active, and a reason is provided, set it to inactive and assign the provided reason
+      profile.active = false;
+      profile.reason = reason || "confirm status manually";
+    } else {
+      // Case 2: If the input profile is inactive, set it to active and remove the reason property
+      profile.active = true;
+      delete profile.reason;
+    }
 
+    }
+
+  return profile;
     }
 
     // 👉 CHALLENGE 2
     function mineSweeper(grid, x, y) {
+    
+
+
+
+      if(x < 1 || x > 3 || y < 1 || y > 3) {
+        return "invalid coordinates";
+      }
       
+      // Get the value at the specified coordinates
+  const value = grid[y - 1][x - 1];
+
+// Check the value and return the appropriate message
+if (value === "🟥") {
+  return "🟥 💀";
+} else if (value === "🟦") {
+  return "🟦 🥳";
+}
     }
 
     // 👉 CHALLENGE 3
     function booleanize(obj) {
+      for (const key in obj) {
+        if (key.length > 9) {
+            return "shorten all prop names to 9 chars or less";
+        }
+        else if (obj[key] === null) {
+            delete obj[key];
+        }
+        else if (obj[key] === 1) {
+          obj[key] = true;
+        }
+        else if (obj[key] === 0) {
+          obj[key] = false;
+        }
+    }
 
+    return Object.keys(obj).length > 0 ? obj : {};
+      
+      
+      
     }
 
     // 👉 CHALLENGE 4
     function scrub(text, forbidden) {
- 
+       
+      if(text === '' || forbidden ===0){
+          return text;
+        }
+        else{
+
+          const sanitizedText = text.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '');
+
+// Split the text into an array of words
+const words = sanitizedText.split(' ');
+
+// Replace forbidden words with "x" characters of equal length
+const censoredText = words.map(word => {
+    // Check if the word is in the forbidden array
+    if (forbidden.includes(word.toLowerCase())) {
+        // Replace the word with "x" characters of equal length
+        return 'x'.repeat(word.length);
+    }
+    // Keep the original word
+    return word;
+});
+
+// Join the words back into a string
+const result = censoredText.join(' ');
+
+return result;
+
+        }
     }
 
     // 👉 CHALLENGE 5 (bonus, NOT graded)

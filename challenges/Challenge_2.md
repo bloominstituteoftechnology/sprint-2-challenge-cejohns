@@ -34,7 +34,7 @@ The grid is interpreted with `x` and `y` coordinates ranging from 1 to 3.
 
 ## Requirements
 1. If the coordinates land on a red square ("🟥"), return `"🟥 💀"`.
-2. If the coordinates land on a blue square ("🟦"), return `"🟦 🥳"`.
+2. If the coordinates land on a blue square "(🟦"), return `"🟦 🥳"`.
 3. If `x` _or_ `y` is less than 1 or greater than 3, return `"invalid coordinates"`.
 
 ### Examples
