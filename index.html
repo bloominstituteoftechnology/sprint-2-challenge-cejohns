@@ -105,7 +105,28 @@ return result;
 
     // 👉 CHALLENGE 5 (bonus, NOT graded)
     function normalizePhoneNumber(num) {
+       // Validate input length and digits
+    if (num.length !== 10 || !/^\d+$/.test(num)) {
+        throw new Error("Invalid input: Please provide a 10-digit number.");
+    }
 
+    // Create a template for the phone number format
+    const template = "(XXX) XXX-XXXX";
+
+    // Loop backwards through the template and replace 'X' with digits from the input number
+    let formattedNumber = "";
+    let index = 0;
+    for (let i = template.length - 1; i >= 0; i--) {
+        const char = template[i];
+        if (char === 'X') {
+          formattedNumber += num[index];
+            index += 1;
+        } else {
+          formattedNumber += char;
+        }
+    }
+
+    return formattedNumber;
     }
 
     // 👉 CHALLENGE 6 (bonus, NOT graded)
